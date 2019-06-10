@@ -2,7 +2,8 @@
 
 ## Overview
 This project is a compilation of publicly available teacher evaluation reports for US school districts. Detailed notes with the sources of all data are part of this repostiory, as is all code used to clean and process the data. In this repository you won't find teacher names and evalauation scores, but you will find the count of teachers receiving each rating in a district. It is not at all clear that evaluation reports are comparable across districts or states, and we urge extreme caution in attempting to directly compare results across districts. Districts with more teachers rated 'ineffective' may have worse teachers or they may simply have been more willing to engage with the evaluation tools. Similarly, districts that report all of their teachers are 'highly effective' may in fact be phenomenal, or they may have had administrators who decided that they did not want to meaningfully participate in the evaluation system. 
-TODO: compile clean data into .rds
+
+All data for this project is currently kept privately until I ready for a public release of the data. If you are interested in getting involved please contact me.
 
 ## States in repository
 Payroll records have been obtained from the following states:
