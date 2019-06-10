@@ -31,4 +31,4 @@ ny <- dis_csv %>%
          name=tolower(name)) %>% 
   mutate_if(is.numeric, as.integer)
   
-write_csv(ny,paste0(paths$eval,"NewYorkEval.csv"))
+write_csv(ny, "cleanData/NewYorkEval.csv")

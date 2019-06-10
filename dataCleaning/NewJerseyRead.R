@@ -41,4 +41,4 @@ nj <- bind_rows(y1,y2,y3) %>%
   select(state, year, localid, name, e1, e2, e3, e4, et, e2_impute) %>% 
   filter(name!="statewide")
 
-write_csv(nj,paste0(paths$eval,"NewJerseyEval.csv"))
+write_csv(nj, "cleanData/NewJerseyEval.csv")

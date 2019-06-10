@@ -75,4 +75,4 @@ corp <- bind_rows(corp.y1, corp.y2, corp.y3, corp.y4) %>%
   filter(!is.na(corp)&!is.na(corpnum)) %>% 
   select(state, year, localid=corpnum, name=corp, e1, e2, e3, e4, eu=unrated, et=total)
 
-write_csv(corp,paste0(paths$eval,"IndianaEval.csv"))
+write_csv(corp, "cleanData/IndianaEval.csv")

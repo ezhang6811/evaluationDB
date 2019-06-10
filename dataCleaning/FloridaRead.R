@@ -57,4 +57,4 @@ fl <- bind_rows(y1,y2,y3,y4,fl56) %>%
   mutate_if(is.numeric, as.integer) %>% 
   select(state,year,localid=DistrictNum,name=Name,e1=Unsatisfactory,e2,e3=Effective,e4=HighlyEffective,eu=NotEvaluated,et=Total)
 
-write_csv(fl,paste0(paths$eval,"FloridaEval.csv"))
+write_csv(fl, "cleanData/FloridaEval.csv")
