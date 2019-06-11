@@ -1,17 +1,33 @@
-setwd(paste0(stubs$dh,"New Jersey"))
 
-# "When one performance level is suppressed due to n-size, and all 4 performance level ratings are present, the next lowest staff count will be suppressed (record will not be part of the file), to disallow roll-up to find the rating count for the first level suppressed and thus potentially identify educators."
+# Setup ------------------------------------------------------------------------
 
-# NJ suppresses the count in any category with <10, and the next lowest category, but reports the total number of teachers rated
+library(dplyr)
+library(readxl)
+library(readr)
+
+source("setup.r")
+
+path <- setpath("New Jersey")
+
+# Read -------------------------------------------------------------------------
+
+# "When one performance level is suppressed due to n-size, and all 4 performance
+# level ratings are present, the next lowest staff count will be suppressed 
+# (record will not be part of the file), to disallow roll-up to find the rating 
+# count for the first level suppressed and thus potentially identify educators."
+
+# NJ suppresses the count in any category with <10, and the next lowest category, 
+# but reports the total number of teachers rated
 # I compare the reported total to the sum of the unsuppressed categories.
 # If they match I replace nas with 0
-# If only e1 and e2 are missing, I impute the difference between the reported total and the sum to e2
+# If only e1 and e2 are missing, I impute the difference between the reported 
+# total and the sum to e2
 
-y1 <- read_excel("NJDOE_STAFF_EVAL_1314.xlsx", col_types="text")
+y1 <- read_excel(paste(path, "NJDOE_STAFF_EVAL_1314.xlsx", sep = "/"), col_types="text")
 y1$year = 2014
-y2 <- read_excel("NJDOE_STAFF_EVAL_1415.xlsx", col_types="text")
+y2 <- read_excel(paste(path, "NJDOE_STAFF_EVAL_1415.xlsx", sep = "/"), col_types="text")
 y2$year = 2015
-y3 <- read_excel("NJDOE_STAFF_EVAL_1516.xlsx", col_types="text")
+y3 <- read_excel(paste(path, "NJDOE_STAFF_EVAL_1516.xlsx", sep = "/"), col_types="text")
 y3$year = 2016
 
 nj <- bind_rows(y1,y2,y3) %>% 

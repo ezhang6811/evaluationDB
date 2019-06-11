@@ -3,8 +3,13 @@
 
 # paths ------------------------------------------------------------------------
 
+# Set datapath to location where you downloaded the data
+datapath <- "mypath"
 
-# libraries --------------------------------------------------------------------
+setpath <- function(state) {
+  if (datapath == "mypath") warning("datapath set to mypath, did you forget to change it in the setup file?")
+  paste(datapath, state, "evaluation", sep = "/")
+}
 
 
 

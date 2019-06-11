@@ -1,6 +1,19 @@
-setwd(paste0(stubs$dh,"Ohio/Teacher Evaluations/"))
 
-df <- read_excel("2014-SY-Ohio-Teacher-and-Principal-Evaluations.xlsx", sheet="Teachers - District")
+# Setup ------------------------------------------------------------------------
+
+library(dplyr)
+library(readxl)
+
+source("setup.r")
+
+path <- setpath("Ohio")
+
+# Read -------------------------------------------------------------------------
+
+df <- read_excel(paste(path, 
+                       "2014-SY-Ohio-Teacher-and-Principal-Evaluations.xlsx", 
+                       sep = "/"), 
+                 sheet="Teachers - District")
 names(df) <- c("localid","name","county","e1","e2","e3","e4")
 
 # any category with less than three teachers is suppressed. I am filling in zeros
@@ -30,4 +43,4 @@ Ohio <- df %>%
   mutate_if(is.numeric, as.integer) %>% 
   select(state, year, localid, name, e1, e2, e3, e4, et, e1_impute, e2_impute, e3_impute, e4_impute)
   
-write_csv(Ohio, "cleanData/OhioEval.csv")
+readr::write_csv(Ohio, "cleanData/OhioEval.csv")

@@ -1,3 +1,5 @@
+# TODO: remove setwd, reformat
+
 setwd(paste0(stubs$dh,"New York/EVAL"))
 
 # read in the district data

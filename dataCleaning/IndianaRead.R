@@ -1,10 +1,27 @@
-setwd(paste0(stubs$dh,"Indiana/Evaluation"))
+# This program is terrible and should be rewritten
+
+# Setup ------------------------------------------------------------------------
+
+library(dplyr)
+library(readxl)
+library(readr)
+
+source("setup.r")
+
+path <- setpath("Indiana")
+indiana <- stringr::str_remove(path, "/evaluation")
+
+# Read -------------------------------------------------------------------------
 
 # file and sheet names
-y1 <- c("sboe-data-er-data-report-12-13.xlsx", "12-13 corp level ER data", "12-13 school level ER data")
-y2 <- c("sboeresultsdatareport2013-14.xlsx", c("Corp", "School",  "Retention Rate"))
-y3 <- c("2014-15-evaluation-ratings-er-data-website.xlsx", c("Corporation", "School",  "Retention (School Level)"))
-y4 <- c("2015-16evaluationratings-er-data.xlsx", c("Corporation", "School", "Retention"))
+y1 <- c(paste(path, "sboe-data-er-data-report-12-13.xlsx", sep = "/"),
+        c("12-13 corp level ER data", "12-13 school level ER data"))
+y2 <- c(paste(path, "sboeresultsdatareport2013-14.xlsx", sep = "/"),
+        c("Corp", "School",  "Retention Rate"))
+y3 <- c(paste(path, "2014-15-evaluation-ratings-er-data-website.xlsx", sep = "/"),
+        c("Corporation", "School",  "Retention (School Level)"))
+y4 <- c(paste(path, "2015-16evaluationratings-er-data.xlsx", sep = "/"),
+        c("Corporation", "School", "Retention"))
 
 # read in the data - here i read in a bunch of data beyond just the district counts but dont do anything with it
 # year 1
@@ -27,7 +44,7 @@ schl.y4 <- read_excel(y4[1], sheet= y4[3])
 retn.y4 <- read_excel(y4[1], sheet= y4[4])
 
 # most recent district directory
-directory <- read_excel(paste0(stubs$dh,"Indiana/2017-2018-school-directory-2017-08-07.xlsx")) %>% 
+directory <- read_excel(paste0(indiana,"/2017-2018-school-directory-2017-08-07.xlsx")) %>% 
     select(corpnum=1,corp=2) %>% 
     mutate(corpnum=as.numeric(corpnum)) %>% 
     arrange(corp)

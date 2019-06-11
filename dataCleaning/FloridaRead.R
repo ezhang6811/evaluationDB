@@ -1,4 +1,17 @@
-setwd(paste0(stubs$dh,"Florida"))
+# TODO: Figure out how to parse pdf instead of copy pasting
+# rewrite this code, its terrible
+
+# Setup ------------------------------------------------------------------------
+
+library(dplyr)
+library(readxl)
+library(readr)
+library(pdftools)
+
+source("setup.r")
+path <- setpath("Florida")
+
+# Read -------------------------------------------------------------------------
 
 # EvaluationRatings.pdf # 2012
 # EduEvalRatings.pdf # 2013
@@ -7,12 +20,14 @@ setwd(paste0(stubs$dh,"Florida"))
 # 1516DistEduEvalRate.xls # 2016
 # 1617DistEduEvalRate.xls # 2017
 
-y1 <- pdf_text("EvaluationRatings.pdf")
-y2 <- pdf_text("EduEvalRatings.pdf")
-y3 <- pdf_text("1314EduEvalRatings.pdf")
-y4 <- pdf_text("1415EduEvalRatings.pdf")
-y5 <- read_excel("1516DistEduEvalRate.xls", sheet="Clsrm Tchrs - Pct by Dist")
-y6 <- read_excel("1617DistEduEvalRate.xls", sheet="Clsrm Tchrs - Pct by Dist")
+y1 <- pdf_text(paste(path, "EvaluationRatings.pdf", sep = "/"))
+y2 <- pdf_text(paste(path, "EduEvalRatings.pdf", sep = "/"))
+y3 <- pdf_text(paste(path, "1314EduEvalRatings.pdf", sep = "/"))
+y4 <- pdf_text(paste(path, "1415DistEduEvalRate.pdf", sep = "/"))
+y5 <- read_excel(paste(path, "1516DistEduEvalRate.xls", sep = "/"),
+                 sheet="Clsrm Tchrs - Pct by Dist")
+y6 <- read_excel(paste(path, "1617DistEduEvalRate.xls", sep = "/"),
+                 sheet="Clsrm Tchrs - Pct by Dist")
 
 # here everything is printed in the log, in theory i would figure out how to parse this, but lets be practical im just going to copy pasta to excel and save as csvs
 cat(y1[1]) 
@@ -22,10 +37,10 @@ cat(y3[1])
 cat(y4[1])
 
 # reimport the csvs
-y1 <- read_csv("ParsedPDFs/eval2012.csv")
-y2 <- read_csv("ParsedPDFs/eval2013.csv")
-y3 <- read_csv("ParsedPDFs/eval2014.csv")
-y4 <- read_csv("ParsedPDFs/eval2015.csv")
+y1 <- read_csv(paste0(path, "/ParsedPDFs/eval2012.csv"))
+y2 <- read_csv(paste0(path, "/ParsedPDFs/eval2013.csv"))
+y3 <- read_csv(paste0(path, "/ParsedPDFs/eval2014.csv"))
+y4 <- read_csv(paste0(path, "/ParsedPDFs/eval2015.csv"))
 
 # clean up the excel files
 names(y5) <- c("DistrictNum","Name","HighlyEffective","pcthe","Effective","pcte","NeedsImprovement","pctni","Developing3yrs","pctd3y","Unsatisfactory","pctu","NotEvaluated","pctne","Total")
@@ -53,8 +68,10 @@ fl56 <- bind_rows(y5,y6) %>%
 fl <- bind_rows(y1,y2,y3,y4,fl56) %>% 
   filter(Name != "STATEWIDE TOTAL") %>% 
   mutate(e2=Developing3yrs+NeedsImprovement,
-         state="FL") %>% 
+         state="FL",
+         name = tolower(Name)) %>% 
   mutate_if(is.numeric, as.integer) %>% 
-  select(state,year,localid=DistrictNum,name=Name,e1=Unsatisfactory,e2,e3=Effective,e4=HighlyEffective,eu=NotEvaluated,et=Total)
+  select(state, year, localid=DistrictNum, name, e1=Unsatisfactory, e2, 
+         e3=Effective, e4=HighlyEffective, eu=NotEvaluated, et=Total)
 
 write_csv(fl, "cleanData/FloridaEval.csv")
