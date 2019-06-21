@@ -7,6 +7,7 @@ library(readxl)
 source("setup.r")
 
 path <- setpath("Ohio")
+clean <- setpath("Clean")
 
 # Read -------------------------------------------------------------------------
 
@@ -43,4 +44,7 @@ Ohio <- df %>%
   mutate_if(is.numeric, as.integer) %>% 
   select(state, year, localid, name, e1, e2, e3, e4, et, e1_impute, e2_impute, e3_impute, e4_impute)
   
-readr::write_csv(Ohio, "cleanData/OhioEval.csv")
+readr::write_csv(Ohio, paste(clean, 
+                             "OhioEval.csv", 
+                             sep = "/")
+)
