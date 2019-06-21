@@ -1,8 +1,16 @@
 # This file compiles the cleaned csvs into a single rmd file
+
+# Setup ------------------------------------------------------------------------
+
 library(dplyr)
 library(readr)
 
-list <- list.files("cleanData", pattern = ".csv", full.names = TRUE)
+source("setup.r")
+clean <- setpath("Clean")
+
+
+# Read in Files ----------------------------------------------------------------
+list <- list.files(clean, pattern = ".csv", full.names = TRUE)
 
 files <- lapply(
   list,
@@ -10,6 +18,31 @@ files <- lapply(
   col_types = cols(.default = "d", state = "c", localid = "c", name = "c")  
 )
   
-df <- files %>% bind_rows()
+df <- files %>% bind_rows() 
 
-saveRDS(df, "cleanData/evaluationData.rds")
+# Merge NCES -------------------------------------------------------------------
+
+# TODO
+
+# Rename/Reorder and Save ------------------------------------------------------
+
+df <- df %>% 
+  select(
+    state,
+    year, 
+    "district_name" = name,
+    localid,
+    "teachers" = et, 
+    "not_evaluated" = eu, 
+    "suppressed" = es, 
+    "level1" = e1,
+    "level2" = e2,
+    "level3" = e3,
+    "level4" = e4,
+    "impute_level1" = e1_impute,
+    "impute_level2" = e2_impute,
+    "impute_level3" = e3_impute,
+    "impute_level4" = e4_impute
+  )
+
+saveRDS(df, paste(clean, "evaluationData.rds", sep = "/"))

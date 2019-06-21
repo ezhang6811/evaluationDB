@@ -1,5 +1,7 @@
 # List of clean variables
 
+These notes apply to cleaning the raw data and the intermediary csv files. The compiled database gives these variables intuitively legible names. 
+
 ## Identifiers
 
 * state: two character state abbreviation
@@ -9,13 +11,13 @@
 * NCES_leaid (TODO)
 
 ## Evaluation
+* et: total count of teachers reported by district
+* eu: count of teachers district reports as unrated
+* es: count of teachers with suppressed ratings
 * e1: count of teachers receiving lowest rating  (typically ‘ineffective’)
 * e2: count of teachers receiving second lowest rating (typically ‘developing’)
 * e3: count of teachers receiving middle rating (typically ‘effective’)
 * e4: count of teachers receiving highest rating (typically ‘highly effective’)
-* eu: count of teachers district reports as unrated
-* es: count of teachers with suppressed ratings
-* et: total count of teachers reported by district
 * e1_impute: indicator for imputed count 
 * e2_impute: indicator for imputed count
 * e3_impute: indicator for imputed count
