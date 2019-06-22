@@ -1,13 +1,11 @@
 # This file compiles the cleaned csvs into a single rmd file
+# Assumes that there is a folder cleanData in the working directory of the 
+# project containing the clean csv files.
 
 # Setup ------------------------------------------------------------------------
 
 library(dplyr)
 library(readr)
-
-source("setup.r")
-clean <- setpath("Clean")
-
 
 # Read in Files ----------------------------------------------------------------
 list <- list.files(clean, pattern = ".csv", full.names = TRUE)
@@ -45,4 +43,4 @@ df <- df %>%
     "impute_level4" = e4_impute
   )
 
-saveRDS(df, paste(clean, "evaluationData.rds", sep = "/"))
+saveRDS(df, "cleanData/evaluationData.rds")

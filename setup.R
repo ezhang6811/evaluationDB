@@ -1,5 +1,11 @@
 # This is a set up file
-# TODO need to replace libs_and_paths
+# Follow these steps to get the project up and working
+
+# 1 Download raw data from dropbox link
+# 2 set the datapath below to the location where you have downloaded the raw data
+# 3 in the project working directory create a folder called cleanData. The 
+# dataCleaning scripts will output clean csvs to that directory
+
 
 # paths ------------------------------------------------------------------------
 

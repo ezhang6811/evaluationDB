@@ -21,5 +21,9 @@ Payroll records have been obtained from the following states:
 
 See the state_details file for comprehenisve information about the data available for each state and the definition of each variable. 
 
+## Contributing
+
+If you are interested in contributing to this project, please contact Lief Esbenshade. After cloning the repository to a new r project, follow the steps in setup.R
+
 ## About the Author
 Lief Esbenshade is a doctoral candidate at Stanford University in the Economics of Education program. His work focuses on understanding teacher quality and teacher labor markets. He has worked with New York City Department of Education, San Francisco Unified School District, Stanford Center for Assessment Learning and Equity (SCALE), and the Educational Testing Service (ETS).
