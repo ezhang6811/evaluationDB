@@ -32,6 +32,7 @@ convertNumber <- function(e, evaluated) {
 
 Massachusetts <- df %>%
   mutate(
+    state = "MA",
     name = tolower(name),
     evaluated = as.numeric(gsub(",", "", evaluated)), 
     et = as.numeric(gsub(",", "", et)),
@@ -42,9 +43,9 @@ Massachusetts <- df %>%
     vars(e1, e2, e3, e4), 
     list(~convertNumber(., evaluated))
     ) %>% 
-  select("name", "localid", "year", "et", "eu", "es",
+  select("state", "name", "localid", "year", "et", "eu", "es",
          "e4", "e3", "e2", "e1") %>% 
   filter(name != "state totals") %>% 
-  arrange(localid, year)
+  arrange(localid, year) 
 
 write_csv(Massachusetts, "CleanData/MassachusettsEval.csv")

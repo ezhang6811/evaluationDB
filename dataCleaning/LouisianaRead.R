@@ -123,8 +123,10 @@ df3 <- df2 %>%
                 name %in% 
                   c("Orleans Parish including RSD and OPSB", 
                     "Orleans Parish + Recovery Parish New Orleans") ~ "036", 
-                TRUE ~ localid)) %>% 
-  select(-localid2) 
+                TRUE ~ localid),
+    state = "LA") %>% 
+  select("state", "name", "localid", "year", "p1", "p2", "p3", "p4",
+         "p1_impute", "p2_impute")
 
 write_csv(df3, "CleanData/LouisianaEval.csv")
 
