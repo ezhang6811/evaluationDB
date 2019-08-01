@@ -11,15 +11,15 @@ Payroll records have been obtained from the following states:
 * Connecticut (to clean)
 * Florida
 * Indiana
-* Louisiana (to clean)
-* Massachussettes (to clean)
+* Louisiana 
+* Massachussettes 
 * Michigan (to clean)
 * New Jersey 
 * New York 
 * North Carolina (to clean)
 * Ohio
 
-See the state_details file for comprehenisve information about the data available for each state and the definition of each variable. 
+See the readme file in dataCleaning/ for comprehensive information about the data available for each state and the definition of each variable. 
 
 ## Contributing
 

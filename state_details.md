@@ -52,10 +52,12 @@
 * Data 
     + Source
     + Quality Notes
-        - "~": Omitted because fewer than 10
+        - Data provided only as percents, no counts of teachers
         - Final score and component sub scores
         - School level also available (not cleaned)
     + Imputation
+        - Suppression when less than 1%, but can impute suppressed category using 1 - sum(other categories)
+        - p1 and p2 imputed in this manner
     
 ## Massachussettes
 * Evaluation System Overview
