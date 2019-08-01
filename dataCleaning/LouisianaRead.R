@@ -91,6 +91,8 @@ dt <- as_tibble(dt) %>%
   as.data.table()
 
 dt[year %in% c(2013, 2014), `:=`(p1 = p1 * 100, p2 = p2 * 100, p3 = p3 * 100, p4 = p4 * 100)]
+dt[year == 2016	& localid == '036', `:=`(p1 = p1 * 100, p2 = p2 * 100, p3 = p3 * 100, p4 = p4 * 100)]
+
 dt[p1_impute == 1 & p2_impute != 1, `:=`(p1 = 100 - (p4 + p3 + p2))]
 dt[p1_impute == 1 & p2_impute == 1, `:=`(p2 = 100 - (p4 + p3))]
 dt[p1_impute != 1 & p2_impute == 1, `:=`(p2 = 100 - (p4 + p3 + p1))]
@@ -122,7 +124,7 @@ df3 <- df2 %>%
                   c("Orleans Parish including RSD and OPSB", 
                     "Orleans Parish + Recovery Parish New Orleans") ~ "036", 
                 TRUE ~ localid)) %>% 
-  select(-localid2)
+  select(-localid2) 
 
 write_csv(df3, "CleanData/LouisianaEval.csv")
 
