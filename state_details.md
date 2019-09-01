@@ -76,7 +76,7 @@
             - '-': There is a count of teachers to be evaluated, as well as the number that were evaluated, but all actual evaluation numbers are replaced with '-'. Currently assuming that this coding is for cases where districts did implement evaluations and report the results to the state, but that the results were suppressed to protect teacher privacy.
     + Imputation: no imputation was done. 
 
-## Michigan (to clean)
+## Michigan
 * Brief overview of evaluation system and links to documentation
     + number of rating categories
     + year implemented 
