@@ -8,12 +8,11 @@ All data for this project is currently kept privately until I ready for a public
 ## States in repository
 Payroll records have been obtained from the following states:
 
-* Connecticut (to clean)
 * Florida
 * Indiana
 * Louisiana 
 * Massachussettes 
-* Michigan (to clean)
+* Michigan
 * New Jersey 
 * New York 
 * North Carolina (to clean)
