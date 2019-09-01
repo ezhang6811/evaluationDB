@@ -42,7 +42,7 @@
     + Quality Notes
     + Imputation: There is no imputation, all results are suppressed for districts with less than 10 teachers. 
 
-## Louisiana (to clean)
+## Louisiana
 * Evaluation System Overview
     + Rating Categories
     + Years Implemented
