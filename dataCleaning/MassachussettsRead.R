@@ -18,10 +18,16 @@ for(i in 1:length(files)) {
   files[[i]]$year <- years[i]
 }
 
-df <- bind_rows(files)
-
-names(df) <- c("name", "localid", "et", "evaluated", "percentEvaluated",
-               "e4", "e3", "e2", "e1", "year") 
+df <- bind_rows(files) %>%
+rename(name = `District Name`,
+       localid = `District Code`,
+       et = `# of Educators`,
+       evaluated = `# Evaluated`,
+       e1 = `% Exemplary`,
+       e2 = `% Proficient`,
+       e3 = `% Needs Improvement`,
+       e4 = `% Unsatisfactory`
+       )
 
 
 # Clean ------------------------------------------------------------------------
