@@ -9,13 +9,17 @@ MIpath <- setpath("Michigan")
 
 # Read -------------------------------------------------------------------------
 
-df <- read.csv(paste0(MIpath, "/EducatorEffectivenessTrend 2.csv"),
-               header = TRUE, skip = 2, nrows = 6204)
-
-names(df) <- c("year", "name", "loctype", "localid", "teacher", "et",
-               "e4", "e3", "e2", "effectiveormore", "ineffectiveorless",
-               "e1", "e4%", "e3%", "e2%", "effectiveormore%",
-               "ineffectiveorless%", "e1%")
+df <- 
+  read.csv(paste0(MIpath, "/EducatorEffectivenessTrend 2.csv"),
+               header = TRUE, skip = 2, nrows = 6204) %>%
+  rename(year = `School Year`,
+         name = `Location Name`,
+         localid = `Location Code`,
+         et = `Total Count `,
+         e4 = `HighlyEffective Count`,
+         e3 = `Effective Count`,
+         e2 = `MinimallyEffective Count`,
+         e1 = `Ineffective Count`)
 
 df <- df[-c(1:7), ]
 
