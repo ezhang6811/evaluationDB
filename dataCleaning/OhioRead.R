@@ -13,8 +13,13 @@ path <- setpath("Ohio")
 df <- read_excel(paste(path, 
                        "2014-SY-Ohio-Teacher-and-Principal-Evaluations.xlsx", 
                        sep = "/"), 
-                 sheet="Teachers - District")
-names(df) <- c("localid","name","county","e1","e2","e3","e4")
+                 sheet="Teachers - District") %>%
+    rename(localid = `District IRN`,
+           name = `District Name`,
+           e1 = `Number of Teachers evaluated as Ineffective`,
+           e2 = `Number of Teachers evaluated as Developing`,
+           e3 = `Number of Teachers evaluated as Skilled`,
+           e4 = `Number of Teachers evaluated as Accomplished`)
 
 # any category with less than three teachers is suppressed. I am filling in zeros
 
